@@ -10,7 +10,7 @@
       "spelEvaluator": "v4",
       "stages": [
         {{
-          local_module "/modules/simplewait.module"
+          local_module "dinghy/modules/simplewait.module"
         }},
         {{
           module "wait.stage.module"
