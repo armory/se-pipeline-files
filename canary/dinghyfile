@@ -3,7 +3,7 @@
   "pipelines": [
     {
       "application": "canary",
-      "name": "canary deploy",
+      "name": "canary deploy (gitops)",
       "appConfig": {},
       "expectedArtifacts": [],
       "keepWaitingPipelines": false,
