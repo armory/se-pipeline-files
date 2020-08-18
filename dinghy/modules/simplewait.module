@@ -1,8 +1,8 @@
 {
   "isNew": true,
-  "name": "Wait - updated Aug 18",
+  "name": "{{ var "name" ?: "custom wait" }}",
   "refId": "1",
   "requisiteStageRefIds": [],
   "type": "wait",
-  "waitTime": 40
+  "waitTime": "{{ var "waitTime" ?: "10" }}"
 }

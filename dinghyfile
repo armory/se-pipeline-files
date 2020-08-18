@@ -1,6 +1,6 @@
 {
   "application": "dinghy",
-  "deleteStalePipelines": true,
+  "deleteStalePipelines": false,
   "pipelines": [
     {
       "application": "dinghy",
