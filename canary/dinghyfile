@@ -1,5 +1,6 @@
 {
   "application": "canary",
+  "deleteStalePipelines": true,
   "pipelines": [
     {
       "application": "canary",
