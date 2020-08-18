@@ -4,7 +4,7 @@
   "pipelines": [
     {
       "application": "canary",
-      "name": "simple pipeline (gitops)"
+      "name": "simple pipeline (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
