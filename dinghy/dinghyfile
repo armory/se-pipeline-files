@@ -3,7 +3,27 @@
   "pipelines": [
     {
       "application": "dinghy",
-      "name": "simple modules (gitops)",
+      "name": "step 1. simple pipeline (gitops)",
+      "keepWaitingPipelines": false,
+      "lastModifiedBy": "away168",
+      "limitConcurrent": true,
+      "spelEvaluator": "v4",
+      "stages": [
+        {
+          "isNew": true,
+          "name": "Wait - updated Aug 18",
+          "refId": "1",
+          "requisiteStageRefIds": [],
+          "type": "wait",
+          "waitTime": 30
+        }
+      ],
+      "triggers": [],
+      "updateTs": "1597712087000"
+    },
+    {
+      "application": "dinghy",
+      "name": "step 2. simple modules (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
