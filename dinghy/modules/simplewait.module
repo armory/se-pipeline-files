@@ -4,5 +4,5 @@
   "refId": "1",
   "requisiteStageRefIds": [],
   "type": "wait",
-  "waitTime": 30
+  "waitTime": 40
 }
