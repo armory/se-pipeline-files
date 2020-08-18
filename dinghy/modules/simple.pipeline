@@ -1,9 +1,6 @@
-{
-  "application": "dinghy",
-  "pipelines": [
     {
       "application": "dinghy",
-      "name": "simple modules (gitops)",
+      "name": "simple pipeline (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
@@ -11,8 +8,6 @@
       "stages": [
         {{
           local_module "dinghy/modules/simplewait.module"
-          "name" "wait - aug 18"
-          "waitTime" "13"
         }},
         {{
           module "wait.stage.module"
@@ -20,10 +15,4 @@
       ],
       "triggers": [],
       "updateTs": "1597712087000"
-    },
-    {{ local_module "dinghy/modules/simple.pipeline" 
-      "name" "simple pipeline wait - aug 18"
-      "waitTime" "17"
-    }}
-  ]
-}
+    }
