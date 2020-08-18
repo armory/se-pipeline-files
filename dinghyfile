@@ -1,0 +1,26 @@
+{
+  "application": "canary",
+  "deleteStalePipelines": true,
+  "pipelines": [
+    {
+      "application": "canary",
+      "name": "simple pipeline (gitops)"
+      "keepWaitingPipelines": false,
+      "lastModifiedBy": "away168",
+      "limitConcurrent": true,
+      "spelEvaluator": "v4",
+      "stages": [
+        {
+          "isNew": true,
+          "name": "Wait - updated Aug 17",
+          "refId": "1",
+          "requisiteStageRefIds": [],
+          "type": "wait",
+          "waitTime": 30
+        }
+      ],
+      "triggers": [],
+      "updateTs": "1597712087000"
+    }
+  ]
+}
