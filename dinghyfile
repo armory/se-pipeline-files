@@ -1,9 +1,9 @@
 {
-  "application": "canary",
+  "application": "dinghy",
   "deleteStalePipelines": true,
   "pipelines": [
     {
-      "application": "canary",
+      "application": "dinghy",
       "name": "simple pipeline (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
