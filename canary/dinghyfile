@@ -494,6 +494,9 @@
             },
             "storageAccountName": "s3bucket"
           },
+          "completeOtherBranchesThenFail": false,
+          "continuePipeline": true,
+          "failPipeline": false,
           "name": "Canary Analysis",
           "refId": "14",
           "requisiteStageRefIds": [
