@@ -1,0 +1,23 @@
+{
+  "application": "dinghy",
+  "pipelines": [
+    {
+      "application": "dinghy",
+      "name": "simple modules (gitops)",
+      "keepWaitingPipelines": false,
+      "lastModifiedBy": "away168",
+      "limitConcurrent": true,
+      "spelEvaluator": "v4",
+      "stages": [
+        {{
+          local_module "/modules/simplewait.module"
+        }},
+        {{
+          module "wait.stage.module"
+        }}
+      ],
+      "triggers": [],
+      "updateTs": "1597712087000"
+    }
+  ]
+}
