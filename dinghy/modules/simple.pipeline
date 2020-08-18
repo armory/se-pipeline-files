@@ -1,14 +1,11 @@
     {
       "application": "dinghy",
-      "name": "simple pipeline (gitops)",
+      "name": "simple pipeline module (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
       "spelEvaluator": "v4",
       "stages": [
-        {{
-          local_module "dinghy/modules/simplewait.module"
-        }},
         {{
           module "wait.stage.module"
         }}
