@@ -1,0 +1,46 @@
+{
+  "applications": [
+    "canary"
+  ],
+  "classifier": {
+    "groupWeights": {
+      "Group 1": 100
+    }
+  },
+  "configVersion": "1",
+  "createdTimestamp": 1596555946983,
+  "createdTimestampIso": "2020-08-04T15:45:46.983Z",
+  "description": "custom metric from hellotoday app",
+  "judge": {
+    "judgeConfigurations": {},
+    "name": "NetflixACAJudge-v1.0"
+  },
+  "metrics": [
+    {
+      "analysisConfigurations": {
+        "canary": {
+          "critical": true
+        }
+      },
+      "groups": [
+        "Group 1"
+      ],
+      "name": "Latency",
+      "query": {
+        "customFilterTemplate": "filter",
+        "customInlineTemplate": "",
+        "groupByFields": [],
+        "metricName": "custom_dummy_latency",
+        "serviceType": "prometheus",
+        "type": "prometheus"
+      },
+      "scopeName": "default"
+    }
+  ],
+  "name": "hellotoday-latency",
+  "templates": {
+    "filter": "group=\"${scope}\",namespace=\"${location}\""
+  },
+  "updatedTimestamp": 1597449104650,
+  "updatedTimestampIso": "2020-08-14T23:51:44.650Z"
+}
