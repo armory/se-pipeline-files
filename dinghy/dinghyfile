@@ -11,7 +11,7 @@
       "stages": [
         {
           "isNew": true,
-          "name": "Wait - updated Aug 18",
+          "name": "Wait - updated Aug 20",
           "refId": "1",
           "requisiteStageRefIds": [],
           "type": "wait",
@@ -41,7 +41,8 @@
       "triggers": [],
       "updateTs": "1597712087000"
     },
-    {{ local_module "dinghy/modules/simple.pipeline" 
+    {{ 
+      local_module "dinghy/modules/simple.pipeline" 
       "name" "simple pipeline wait - aug 18"
       "waitTime" "17"
     }}
