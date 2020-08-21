@@ -474,9 +474,9 @@
           "canaryConfig": {
             "baselineAnalysisOffsetInMins": "",
             "beginCanaryAnalysisAfterMins": "0",
-            "canaryAnalysisIntervalMins": "2",
+            "canaryAnalysisIntervalMins": "1",
             "canaryConfigId": "4645bd13-efef-41ac-829b-48c8e9f8932c",
-            "lifetimeDuration": "PT0H10M",
+            "lifetimeDuration": "PT0H5M",
             "metricsAccountName": "prometheus",
             "scopes": [
               {
@@ -486,7 +486,7 @@
                 "experimentScope": "canary",
                 "extendedScopeParams": {},
                 "scopeName": "default",
-                "step": 5
+                "step": 2
               }
             ],
             "scoreThresholds": {
