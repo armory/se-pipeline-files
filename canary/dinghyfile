@@ -131,7 +131,7 @@
               "kind": "Deployment",
               "metadata": {
                 "annotations": {
-                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22baseline%22%7D&g0.tab=0'>Graph</a>",
+                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22baseline%22%7D&g0.tab=0'>Graph</a>",
                   "strategy.spinnaker.io/max-version-history": "2"
                 },
                 "name": "hello-world-baseline"
@@ -272,7 +272,7 @@
               "kind": "Deployment",
               "metadata": {
                 "annotations": {
-                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22canary%22%7D&g0.tab=0'>Graph</a>",
+                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22canary%22%7D&g0.tab=0'>Graph</a>",
                   "strategy.spinnaker.io/max-version-history": "2"
                 },
                 "name": "hello-world-canary"
@@ -406,7 +406,7 @@
               "kind": "Deployment",
               "metadata": {
                 "annotations": {
-                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22prod%22%7D&g0.tab=0'>Graph</a>",
+                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22prod%22%7D&g0.tab=0'>Graph</a>",
                   "strategy.spinnaker.io/max-version-history": "4"
                 },
                 "name": "hello-world-prod"
