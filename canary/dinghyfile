@@ -1,488 +1,496 @@
 {
-  "keepWaitingPipelines": false,
-  "lastModifiedBy": "away168",
-  "limitConcurrent": true,
-  "parallel": false,
-  "parameterConfig": [
+  "application": "canary",
+  "deleteStalePipelines": true,
+  "pipelines": [
     {
-      "default": "v1",
-      "description": "",
-      "hasOptions": true,
-      "label": "",
-      "name": "tag",
-      "options": [
+      "application": "canary",
+      "name": "canary deploy (gitops)",
+      "keepWaitingPipelines": false,
+      "lastModifiedBy": "away168",
+      "limitConcurrent": true,
+      "parallel": false,
+      "parameterConfig": [
         {
-          "value": "v1"
-        },
-        {
-          "value": "v2"
-        },
-        {
-          "value": "v3"
-        }
-      ],
-      "pinned": true,
-      "required": true
-    },
-    {
-      "default": "100",
-      "description": "",
-      "hasOptions": false,
-      "label": "",
-      "name": "mean",
-      "options": [
-        {
-          "value": ""
-        }
-      ],
-      "pinned": false,
-      "required": false
-    },
-    {
-      "default": "20",
-      "description": "standard deviation",
-      "hasOptions": false,
-      "label": "",
-      "name": "sd",
-      "options": [
-        {
-          "value": ""
-        }
-      ],
-      "pinned": false,
-      "required": false
-    }
-  ],
-  "stages": [
-    {
-      "account": "prod-us-west-2",
-      "app": "democanary",
-      "cloudProvider": "kubernetes",
-      "comments": "The first time this pipeline runs; this stage may fail.  This is fine.",
-      "completeOtherBranchesThenFail": false,
-      "continuePipeline": true,
-      "expectedArtifacts": [],
-      "failPipeline": false,
-      "location": "prod",
-      "manifestName": "deployment hello-world-prod",
-      "mode": "static",
-      "name": "Get Info",
-      "refId": "2",
-      "requisiteStageRefIds": [],
-      "type": "findArtifactsFromResource"
-    },
-    {
-      "comments": "<pre>\nCurrent Image: Get current image from hello-world-prod deployment (if it's valid), otherwise default to 'justinrlee/hello-world:monday'\nCurrent Instances: Get current replica count from hello-world-prod deployment (if it's valid), otherwise default to 4\nNew Image: Build from trigger.\n</pre>",
-      "failOnFailedExpressions": true,
-      "name": "Evaluate Variables",
-      "refId": "3",
-      "requisiteStageRefIds": [
-        "2",
-        "5"
-      ],
-      "type": "evaluateVariables",
-      "variables": [
-        {
-          "key": "current_image",
-          "value": "${#stage(\"Get Info\").status == \"FAILED_CONTINUE\" ? \"away168/hello-metrics:v1\" : #stage(\"Get Info\").context.artifacts.^[type== \"docker/image\"].reference}"
-        },
-        {
-          "key": "current_instances",
-          "value": "${#stage(\"Get Info\").status == \"FAILED_CONTINUE\" ? 4 : #stage(\"Get Info\").context.manifest.spec.replicas}"
-        },
-        {
-          "key": "new_image",
-          "value": "away168/hello-metrics:${parameters.tag}"
-        }
-      ]
-    },
-    {
-      "account": "prod-us-west-2",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
-          "metadata": {
-            "annotations": {
-              "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22baseline%22%7D&g0.tab=0'>Graph</a>",
-              "strategy.spinnaker.io/max-version-history": "2"
+          "default": "v1",
+          "description": "",
+          "hasOptions": true,
+          "label": "",
+          "name": "tag",
+          "options": [
+            {
+              "value": "v1"
             },
-            "name": "hello-world-baseline"
-          },
-          "spec": {
-            "replicas": 1,
-            "selector": {
-              "matchLabels": {
-                "app": "hello-world",
-                "group": "baseline"
-              }
+            {
+              "value": "v2"
             },
-            "template": {
+            {
+              "value": "v3"
+            }
+          ],
+          "pinned": true,
+          "required": true
+        },
+        {
+          "default": "100",
+          "description": "",
+          "hasOptions": false,
+          "label": "",
+          "name": "mean",
+          "options": [
+            {
+              "value": ""
+            }
+          ],
+          "pinned": false,
+          "required": false
+        },
+        {
+          "default": "20",
+          "description": "standard deviation",
+          "hasOptions": false,
+          "label": "",
+          "name": "sd",
+          "options": [
+            {
+              "value": ""
+            }
+          ],
+          "pinned": false,
+          "required": false
+        }
+      ],
+      "stages": [
+        {
+          "account": "prod-us-west-2",
+          "app": "democanary",
+          "cloudProvider": "kubernetes",
+          "comments": "The first time this pipeline runs; this stage may fail.  This is fine.",
+          "completeOtherBranchesThenFail": false,
+          "continuePipeline": true,
+          "expectedArtifacts": [],
+          "failPipeline": false,
+          "location": "prod",
+          "manifestName": "deployment hello-world-prod",
+          "mode": "static",
+          "name": "Get Info",
+          "refId": "2",
+          "requisiteStageRefIds": [],
+          "type": "findArtifactsFromResource"
+        },
+        {
+          "comments": "<pre>\nCurrent Image: Get current image from hello-world-prod deployment (if it's valid), otherwise default to 'justinrlee/hello-world:monday'\nCurrent Instances: Get current replica count from hello-world-prod deployment (if it's valid), otherwise default to 4\nNew Image: Build from trigger.\n</pre>",
+          "failOnFailedExpressions": true,
+          "name": "Evaluate Variables",
+          "refId": "3",
+          "requisiteStageRefIds": [
+            "2",
+            "5"
+          ],
+          "type": "evaluateVariables",
+          "variables": [
+            {
+              "key": "current_image",
+              "value": "${#stage(\"Get Info\").status == \"FAILED_CONTINUE\" ? \"away168/hello-metrics:v1\" : #stage(\"Get Info\").context.artifacts.^[type== \"docker/image\"].reference}"
+            },
+            {
+              "key": "current_instances",
+              "value": "${#stage(\"Get Info\").status == \"FAILED_CONTINUE\" ? 4 : #stage(\"Get Info\").context.manifest.spec.replicas}"
+            },
+            {
+              "key": "new_image",
+              "value": "away168/hello-metrics:${parameters.tag}"
+            }
+          ]
+        },
+        {
+          "account": "prod-us-west-2",
+          "cloudProvider": "kubernetes",
+          "manifests": [
+            {
+              "apiVersion": "apps/v1",
+              "kind": "Deployment",
               "metadata": {
                 "annotations": {
-                  "prometheus.io/path": "/metrics",
-                  "prometheus.io/port": "8080",
-                  "prometheus.io/scrape": "true"
+                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22baseline%22%7D&g0.tab=0'>Graph</a>",
+                  "strategy.spinnaker.io/max-version-history": "2"
                 },
-                "labels": {
-                  "app": "hello-world",
-                  "group": "baseline"
-                }
+                "name": "hello-world-baseline"
               },
               "spec": {
-                "containers": [
-                  {
-                    "image": "${current_image}",
-                    "imagePullPolicy": "Always",
-                    "name": "hello-world",
-                    "ports": [
+                "replicas": 1,
+                "selector": {
+                  "matchLabels": {
+                    "app": "hello-world",
+                    "group": "baseline"
+                  }
+                },
+                "template": {
+                  "metadata": {
+                    "annotations": {
+                      "prometheus.io/path": "/metrics",
+                      "prometheus.io/port": "8080",
+                      "prometheus.io/scrape": "true"
+                    },
+                    "labels": {
+                      "app": "hello-world",
+                      "group": "baseline"
+                    }
+                  },
+                  "spec": {
+                    "containers": [
                       {
-                        "containerPort": 8080
+                        "image": "${current_image}",
+                        "imagePullPolicy": "Always",
+                        "name": "hello-world",
+                        "ports": [
+                          {
+                            "containerPort": 8080
+                          }
+                        ]
                       }
                     ]
                   }
-                ]
+                }
               }
             }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "canary"
-      },
-      "name": "Deploy Baseline",
-      "namespaceOverride": "prod",
-      "refId": "4",
-      "requisiteStageRefIds": [
-        "3"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "account": "prod-us-west-2",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "v1",
-          "kind": "Service",
-          "metadata": {
-            "labels": {
-              "app": "hello-world"
-            },
-            "name": "hello-world"
+          ],
+          "moniker": {
+            "app": "canary"
           },
-          "spec": {
-            "ports": [
+          "name": "Deploy Baseline",
+          "namespaceOverride": "prod",
+          "refId": "4",
+          "requisiteStageRefIds": [
+            "3"
+          ],
+          "skipExpressionEvaluation": false,
+          "source": "text",
+          "trafficManagement": {
+            "enabled": false,
+            "options": {
+              "enableTraffic": false
+            }
+          },
+          "type": "deployManifest"
+        },
+        {
+          "account": "prod-us-west-2",
+          "cloudProvider": "kubernetes",
+          "manifests": [
+            {
+              "apiVersion": "v1",
+              "kind": "Service",
+              "metadata": {
+                "labels": {
+                  "app": "hello-world"
+                },
+                "name": "hello-world"
+              },
+              "spec": {
+                "ports": [
+                  {
+                    "name": "web",
+                    "port": 8080
+                  }
+                ],
+                "selector": {
+                  "app": "hello-world"
+                }
+              }
+            },
+            {
+              "apiVersion": "monitoring.coreos.com/v1",
+              "kind": "ServiceMonitor",
+              "metadata": {
+                "name": "hello-world"
+              },
+              "spec": {
+                "endpoints": [
+                  {
+                    "interval": "2s",
+                    "port": "web"
+                  }
+                ],
+                "namespaceSelector": {
+                  "any": true
+                },
+                "podTargetLabels": [
+                  "group",
+                  "app_version"
+                ],
+                "selector": {
+                  "matchLabels": {
+                    "app": "hello-world"
+                  }
+                }
+              }
+            }
+          ],
+          "moniker": {
+            "app": "canary"
+          },
+          "name": "Deploy Service and ServiceMonitor",
+          "namespaceOverride": "prod",
+          "refId": "5",
+          "requisiteStageRefIds": [],
+          "skipExpressionEvaluation": false,
+          "source": "text",
+          "trafficManagement": {
+            "enabled": false,
+            "options": {
+              "enableTraffic": false
+            }
+          },
+          "type": "deployManifest"
+        },
+        {
+          "account": "prod-us-west-2",
+          "cloudProvider": "kubernetes",
+          "manifests": [
+            {
+              "apiVersion": "apps/v1",
+              "kind": "Deployment",
+              "metadata": {
+                "annotations": {
+                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22canary%22%7D&g0.tab=0'>Graph</a>",
+                  "strategy.spinnaker.io/max-version-history": "2"
+                },
+                "name": "hello-world-canary"
+              },
+              "spec": {
+                "replicas": 1,
+                "selector": {
+                  "matchLabels": {
+                    "app": "hello-world",
+                    "group": "canary"
+                  }
+                },
+                "template": {
+                  "metadata": {
+                    "annotations": {
+                      "prometheus.io/path": "/metrics",
+                      "prometheus.io/port": "8080",
+                      "prometheus.io/scrape": "true"
+                    },
+                    "labels": {
+                      "app": "hello-world",
+                      "group": "canary"
+                    }
+                  },
+                  "spec": {
+                    "containers": [
+                      {
+                        "env": [
+                          {
+                            "name": "DUMMY_MEAN",
+                            "value": "${parameters.mean}"
+                          },
+                          {
+                            "name": "DUMMY_SD",
+                            "value": "${parameters.sd}"
+                          }
+                        ],
+                        "image": "${new_image}",
+                        "imagePullPolicy": "Always",
+                        "name": "hello-world",
+                        "ports": [
+                          {
+                            "containerPort": 8080
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "moniker": {
+            "app": "canary"
+          },
+          "name": "Deploy Canary",
+          "namespaceOverride": "prod",
+          "refId": "6",
+          "requisiteStageRefIds": [
+            "3"
+          ],
+          "skipExpressionEvaluation": false,
+          "source": "text",
+          "trafficManagement": {
+            "enabled": false,
+            "options": {
+              "enableTraffic": false
+            }
+          },
+          "type": "deployManifest"
+        },
+        {
+          "comments": "This is a manual judgment will only occur if the canary fails; otherwise, the app will be promoted automatically",
+          "completeOtherBranchesThenFail": false,
+          "continuePipeline": true,
+          "failPipeline": false,
+          "instructions": "Click \"Continue\" to promote and \"Stop\" to not promote.",
+          "judgmentInputs": [],
+          "name": "Manual Judgment",
+          "notifications": [],
+          "refId": "9",
+          "requisiteStageRefIds": [
+            "14"
+          ],
+          "stageEnabled": {
+            "expression": "${#stage(\"Canary Analysis\").status != \"SUCCEEDED\"}",
+            "type": "expression"
+          },
+          "type": "manualJudgment"
+        },
+        {
+          "account": "prod-us-west-2",
+          "app": "democanary",
+          "cloudProvider": "kubernetes",
+          "location": "prod",
+          "manifestName": "deployment hello-world-canary",
+          "mode": "static",
+          "name": "Destroy Canary",
+          "options": {
+            "cascading": true
+          },
+          "refId": "10",
+          "requisiteStageRefIds": [
+            "9"
+          ],
+          "type": "deleteManifest"
+        },
+        {
+          "account": "prod-us-west-2",
+          "app": "democanary",
+          "cloudProvider": "kubernetes",
+          "location": "prod",
+          "manifestName": "deployment hello-world-baseline",
+          "mode": "static",
+          "name": "Destroy Baseline",
+          "options": {
+            "cascading": true
+          },
+          "refId": "11",
+          "requisiteStageRefIds": [
+            "9"
+          ],
+          "type": "deleteManifest"
+        },
+        {
+          "account": "prod-us-west-2",
+          "cloudProvider": "kubernetes",
+          "manifests": [
+            {
+              "apiVersion": "apps/v1",
+              "kind": "Deployment",
+              "metadata": {
+                "annotations": {
+                  "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22prod%22%7D&g0.tab=0'>Graph</a>",
+                  "strategy.spinnaker.io/max-version-history": "4"
+                },
+                "name": "hello-world-prod"
+              },
+              "spec": {
+                "replicas": "${current_instances.intValue()}",
+                "selector": {
+                  "matchLabels": {
+                    "app": "hello-world",
+                    "group": "prod"
+                  }
+                },
+                "template": {
+                  "metadata": {
+                    "annotations": {
+                      "prometheus.io/path": "/metrics",
+                      "prometheus.io/port": "8080",
+                      "prometheus.io/scrape": "true"
+                    },
+                    "labels": {
+                      "app": "hello-world",
+                      "group": "prod"
+                    }
+                  },
+                  "spec": {
+                    "containers": [
+                      {
+                        "image": "${new_image}",
+                        "imagePullPolicy": "Always",
+                        "name": "hello-world",
+                        "ports": [
+                          {
+                            "containerPort": 8080
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "moniker": {
+            "app": "canary"
+          },
+          "name": "Promote Prod",
+          "namespaceOverride": "prod",
+          "refId": "12",
+          "requisiteStageRefIds": [
+            "9"
+          ],
+          "skipExpressionEvaluation": false,
+          "source": "text",
+          "stageEnabled": {
+            "expression": "${#stage(\"Manual Judgment\").context.judgmentStatus != \"stop\"}",
+            "type": "expression"
+          },
+          "trafficManagement": {
+            "enabled": false,
+            "options": {
+              "enableTraffic": false
+            }
+          },
+          "type": "deployManifest"
+        },
+        {
+          "analysisType": "realTime",
+          "canaryConfig": {
+            "baselineAnalysisOffsetInMins": "",
+            "beginCanaryAnalysisAfterMins": "0",
+            "canaryAnalysisIntervalMins": "1",
+            "canaryConfigId": "4645bd13-efef-41ac-829b-48c8e9f8932c",
+            "lifetimeDuration": "PT0H5M",
+            "metricsAccountName": "prometheus",
+            "scopes": [
               {
-                "name": "web",
-                "port": 8080
+                "controlLocation": "prod",
+                "controlScope": "baseline",
+                "experimentLocation": "prod",
+                "experimentScope": "canary",
+                "extendedScopeParams": {},
+                "scopeName": "default",
+                "step": 2
               }
             ],
-            "selector": {
-              "app": "hello-world"
-            }
-          }
-        },
-        {
-          "apiVersion": "monitoring.coreos.com/v1",
-          "kind": "ServiceMonitor",
-          "metadata": {
-            "name": "hello-world"
+            "scoreThresholds": {
+              "marginal": "50",
+              "pass": "50"
+            },
+            "storageAccountName": "s3bucket"
           },
-          "spec": {
-            "endpoints": [
-              {
-                "interval": "2s",
-                "port": "web"
-              }
-            ],
-            "namespaceSelector": {
-              "any": true
-            },
-            "podTargetLabels": [
-              "group",
-              "app_version"
-            ],
-            "selector": {
-              "matchLabels": {
-                "app": "hello-world"
-              }
-            }
-          }
+          "completeOtherBranchesThenFail": false,
+          "continuePipeline": true,
+          "failPipeline": false,
+          "name": "Canary Analysis",
+          "refId": "14",
+          "requisiteStageRefIds": [
+            "4",
+            "6"
+          ],
+          "type": "kayentaCanary"
         }
       ],
-      "moniker": {
-        "app": "canary"
-      },
-      "name": "Deploy Service and ServiceMonitor",
-      "namespaceOverride": "prod",
-      "refId": "5",
-      "requisiteStageRefIds": [],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "account": "prod-us-west-2",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
-          "metadata": {
-            "annotations": {
-              "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22canary%22%7D&g0.tab=0'>Graph</a>",
-              "strategy.spinnaker.io/max-version-history": "2"
-            },
-            "name": "hello-world-canary"
-          },
-          "spec": {
-            "replicas": 1,
-            "selector": {
-              "matchLabels": {
-                "app": "hello-world",
-                "group": "canary"
-              }
-            },
-            "template": {
-              "metadata": {
-                "annotations": {
-                  "prometheus.io/path": "/metrics",
-                  "prometheus.io/port": "8080",
-                  "prometheus.io/scrape": "true"
-                },
-                "labels": {
-                  "app": "hello-world",
-                  "group": "canary"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "env": [
-                      {
-                        "name": "DUMMY_MEAN",
-                        "value": "${parameters.mean}"
-                      },
-                      {
-                        "name": "DUMMY_SD",
-                        "value": "${parameters.sd}"
-                      }
-                    ],
-                    "image": "${new_image}",
-                    "imagePullPolicy": "Always",
-                    "name": "hello-world",
-                    "ports": [
-                      {
-                        "containerPort": 8080
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "canary"
-      },
-      "name": "Deploy Canary",
-      "namespaceOverride": "prod",
-      "refId": "6",
-      "requisiteStageRefIds": [
-        "3"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "comments": "This is a manual judgment will only occur if the canary fails; otherwise, the app will be promoted automatically",
-      "completeOtherBranchesThenFail": false,
-      "continuePipeline": true,
-      "failPipeline": false,
-      "instructions": "Click \"Continue\" to promote and \"Stop\" to not promote.",
-      "judgmentInputs": [],
-      "name": "Manual Judgment",
-      "notifications": [],
-      "refId": "9",
-      "requisiteStageRefIds": [
-        "14"
-      ],
-      "stageEnabled": {
-        "expression": "${#stage(\"Canary Analysis\").status != \"SUCCEEDED\"}",
-        "type": "expression"
-      },
-      "type": "manualJudgment"
-    },
-    {
-      "account": "prod-us-west-2",
-      "app": "democanary",
-      "cloudProvider": "kubernetes",
-      "location": "prod",
-      "manifestName": "deployment hello-world-canary",
-      "mode": "static",
-      "name": "Destroy Canary",
-      "options": {
-        "cascading": true
-      },
-      "refId": "10",
-      "requisiteStageRefIds": [
-        "9"
-      ],
-      "type": "deleteManifest"
-    },
-    {
-      "account": "prod-us-west-2",
-      "app": "democanary",
-      "cloudProvider": "kubernetes",
-      "location": "prod",
-      "manifestName": "deployment hello-world-baseline",
-      "mode": "static",
-      "name": "Destroy Baseline",
-      "options": {
-        "cascading": true
-      },
-      "refId": "11",
-      "requisiteStageRefIds": [
-        "9"
-      ],
-      "type": "deleteManifest"
-    },
-    {
-      "account": "prod-us-west-2",
-      "cloudProvider": "kubernetes",
-      "manifests": [
-        {
-          "apiVersion": "apps/v1",
-          "kind": "Deployment",
-          "metadata": {
-            "annotations": {
-              "prometheus.details.html.spinnaker.io": "<a href='https://prometheus.se.armory.io/new/graph?g0.range_input=1m&g0.end_input=2020-08-21%2000%3A51&g0.stacked=0&g0.expr=custom_dummy_latency%7Bgroup%3D%22prod%22%7D&g0.tab=0'>Graph</a>",
-              "strategy.spinnaker.io/max-version-history": "4"
-            },
-            "name": "hello-world-prod"
-          },
-          "spec": {
-            "replicas": "${current_instances.intValue()}",
-            "selector": {
-              "matchLabels": {
-                "app": "hello-world",
-                "group": "prod"
-              }
-            },
-            "template": {
-              "metadata": {
-                "annotations": {
-                  "prometheus.io/path": "/metrics",
-                  "prometheus.io/port": "8080",
-                  "prometheus.io/scrape": "true"
-                },
-                "labels": {
-                  "app": "hello-world",
-                  "group": "prod"
-                }
-              },
-              "spec": {
-                "containers": [
-                  {
-                    "image": "${new_image}",
-                    "imagePullPolicy": "Always",
-                    "name": "hello-world",
-                    "ports": [
-                      {
-                        "containerPort": 8080
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
-      ],
-      "moniker": {
-        "app": "canary"
-      },
-      "name": "Promote Prod",
-      "namespaceOverride": "prod",
-      "refId": "12",
-      "requisiteStageRefIds": [
-        "9"
-      ],
-      "skipExpressionEvaluation": false,
-      "source": "text",
-      "stageEnabled": {
-        "expression": "${#stage(\"Manual Judgment\").context.judgmentStatus != \"stop\"}",
-        "type": "expression"
-      },
-      "trafficManagement": {
-        "enabled": false,
-        "options": {
-          "enableTraffic": false
-        }
-      },
-      "type": "deployManifest"
-    },
-    {
-      "analysisType": "realTime",
-      "canaryConfig": {
-        "baselineAnalysisOffsetInMins": "",
-        "beginCanaryAnalysisAfterMins": "0",
-        "canaryAnalysisIntervalMins": "1",
-        "canaryConfigId": "4645bd13-efef-41ac-829b-48c8e9f8932c",
-        "lifetimeDuration": "PT0H5M",
-        "metricsAccountName": "prometheus",
-        "scopes": [
-          {
-            "controlLocation": "prod",
-            "controlScope": "baseline",
-            "experimentLocation": "prod",
-            "experimentScope": "canary",
-            "extendedScopeParams": {},
-            "scopeName": "default",
-            "step": 2
-          }
-        ],
-        "scoreThresholds": {
-          "marginal": "50",
-          "pass": "50"
-        },
-        "storageAccountName": "s3bucket"
-      },
-      "completeOtherBranchesThenFail": false,
-      "continuePipeline": true,
-      "failPipeline": false,
-      "name": "Canary Analysis",
-      "refId": "14",
-      "requisiteStageRefIds": [
-        "4",
-        "6"
-      ],
-      "type": "kayentaCanary"
+      "updateTs": "1603778612000"
     }
-  ],
-  "updateTs": "1603778612000"
+  ]
 }
