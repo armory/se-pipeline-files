@@ -1,0 +1,486 @@
+{
+  "application": "{{ var "application" ?: "terraform" }}"
+  "name": "{{ var "pipelineName" ?: "Terraform (gitops)" }}"
+  "appConfig": {},
+  "expectedArtifacts": [],
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "away168",
+  "limitConcurrent": true,
+  "parameterConfig": [
+    {
+      "default": "baz",
+      "description": "",
+      "hasOptions": true,
+      "label": "",
+      "name": "workspace",
+      "options": [
+        {
+          "value": "foo"
+        },
+        {
+          "value": "bar"
+        }
+      ],
+      "pinned": true,
+      "required": true
+    },
+    {
+      "default": "tfpolicy-${new java.text.SimpleDateFormat(\"yy-MM-dd-ss\").format(new java.util.Date())}",
+      "description": "bucketname",
+      "hasOptions": false,
+      "label": "",
+      "name": "bucketName",
+      "options": [
+        {
+          "value": ""
+        }
+      ],
+      "pinned": true,
+      "required": true
+    }
+  ],
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "action": "plan",
+      "artifacts": [
+        {
+          "account": "gitrepo",
+          "artifact": {
+            "artifactAccount": "gitrepo",
+            "id": "e35dd70e-6e76-4765-839e-81884e377a33",
+            "reference": "https://github.com/armory/se-terraformer-demo.git",
+            "type": "git/repo",
+            "version": "master"
+          }
+        }
+      ],
+      "backendArtifact": {
+        "account": "github",
+        "artifact": {
+          "artifactAccount": "github",
+          "id": "a7884320-0598-4d31-8f17-6e223ccdb8b7",
+          "name": "backend.tf",
+          "reference": "https://api.github.com/repos/armory/se-terraformer-demo/contents/backend.tf",
+          "type": "github/file",
+          "version": "master"
+        }
+      },
+      "dir": "workspace/",
+      "expectedArtifacts": [
+        {
+          "defaultArtifact": {
+            "customKind": true,
+            "id": "7be0a7a8-9796-450e-b564-1e33d0b6d62e"
+          },
+          "displayName": "planfile",
+          "id": "09fd4741-448f-4a46-b50c-f4931b216fda",
+          "matchArtifact": {
+            "artifactAccount": "embedded-artifact",
+            "id": "c259f889-9cc3-4900-a5bf-3e9212ad4c34",
+            "name": "planfile",
+            "type": "embedded/base64"
+          },
+          "useDefaultArtifact": false,
+          "usePriorArtifact": false
+        },
+        {
+          "defaultArtifact": {
+            "artifactAccount": "gitrepo",
+            "id": "1254e324-017e-4a65-9fb8-0eeb1bf2af6a",
+            "reference": "https://github.com/armory/se-terraformer-demo.git",
+            "type": "git/repo",
+            "version": "master"
+          },
+          "displayName": "gitRepoSeTerraformerDemo",
+          "id": "be743fb6-deee-4099-ba7c-06c31cbd047c",
+          "matchArtifact": {
+            "artifactAccount": "gitrepo",
+            "id": "9fb5765d-14b5-4690-8679-da4851bde638",
+            "reference": "https://github.com/armory/se-terraformer-demo.git",
+            "type": "git/repo",
+            "version": "master"
+          },
+          "useDefaultArtifact": true,
+          "usePriorArtifact": false
+        },
+        {
+          "defaultArtifact": {
+            "artifactAccount": "github",
+            "id": "5f707fe1-09a2-44ab-b4e6-8480f0424580",
+            "name": "backend.tf",
+            "reference": "https://api.github.com/repos/armory/se-terraformer-demo/contents/backend.tf",
+            "type": "github/file",
+            "version": "master"
+          },
+          "displayName": "backendSETerraformerDemo",
+          "id": "2f4b1bbb-b32f-43d5-ab7f-e1571591bc8a",
+          "matchArtifact": {
+            "artifactAccount": "github",
+            "id": "6b0b3583-eaf3-44d1-9af4-4fae5d0b69b1",
+            "name": "https://api.github.com/repos/armory/se-terraformer-demo/contents/backend.tf",
+            "type": "github/file"
+          },
+          "useDefaultArtifact": true,
+          "usePriorArtifact": false
+        }
+      ],
+      "name": "Terraform Plan",
+      "overrides": {
+        "environment_name": "${parameters.workspace}-${parameters.bucketName}"
+      },
+      "refId": "1",
+      "requisiteStageRefIds": [],
+      "terraformVersion": "0.12.21",
+      "type": "terraform",
+      "workspace": "${parameters.workspace}"
+    },
+    {
+      "failPipeline": true,
+      "instructions": "Notify via slack of decision.  Review change plan.",
+      "judgmentInputs": [],
+      "name": "Manual Judgment",
+      "notifications": [],
+      "refId": "2",
+      "requisiteStageRefIds": [
+        "1",
+        "14"
+      ],
+      "type": "manualJudgment"
+    },
+    {
+      "failPipeline": true,
+      "judgmentInputs": [],
+      "name": "Destroy?",
+      "notifications": [],
+      "refId": "5",
+      "requisiteStageRefIds": [
+        "8"
+      ],
+      "type": "manualJudgment"
+    },
+    {
+      "action": "apply",
+      "artifacts": [
+        {
+          "account": "GitRepo",
+          "id": "be743fb6-deee-4099-ba7c-06c31cbd047c"
+        },
+        {
+          "account": "",
+          "id": "09fd4741-448f-4a46-b50c-f4931b216fda"
+        }
+      ],
+      "backendArtifact": {
+        "account": "github",
+        "id": "2f4b1bbb-b32f-43d5-ab7f-e1571591bc8a"
+      },
+      "dir": "workspace/",
+      "expectedArtifacts": [],
+      "name": "Terraform Apply",
+      "overrides": {},
+      "refId": "7",
+      "requisiteStageRefIds": [
+        "2"
+      ],
+      "terraformVersion": "0.12.21",
+      "type": "terraform",
+      "workspace": "${parameters.workspace}"
+    },
+    {
+      "action": "output",
+      "artifacts": [
+        {
+          "account": "GitRepo",
+          "id": "be743fb6-deee-4099-ba7c-06c31cbd047c"
+        },
+        {
+          "account": "",
+          "id": "09fd4741-448f-4a46-b50c-f4931b216fda"
+        }
+      ],
+      "backendArtifact": {
+        "account": "github",
+        "id": "2f4b1bbb-b32f-43d5-ab7f-e1571591bc8a"
+      },
+      "dir": "workspace/",
+      "expectedArtifacts": [],
+      "name": "Terraform Output",
+      "overrides": {},
+      "refId": "8",
+      "requisiteStageRefIds": [
+        "7"
+      ],
+      "terraformVersion": "0.12.21",
+      "type": "terraform",
+      "workspace": "${parameters.workspace}"
+    },
+    {
+      "action": "destroy",
+      "artifacts": [
+        {
+          "account": "GitRepo",
+          "id": "be743fb6-deee-4099-ba7c-06c31cbd047c"
+        },
+        {
+          "account": "",
+          "id": "09fd4741-448f-4a46-b50c-f4931b216fda"
+        }
+      ],
+      "backendArtifact": {
+        "account": "github",
+        "id": "2f4b1bbb-b32f-43d5-ab7f-e1571591bc8a"
+      },
+      "dir": "workspace/",
+      "expectedArtifacts": [],
+      "name": "Terraform Destroy",
+      "overrides": {},
+      "refId": "9",
+      "requisiteStageRefIds": [
+        "5"
+      ],
+      "terraformVersion": "0.12.21",
+      "type": "terraform",
+      "workspace": "${parameters.workspace}"
+    },
+    {
+      "account": "dev-us-west-2",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "v1",
+          "data": {
+            "bucketArn": "${#stage( 'Terraform Output' )[\"context\"][\"status\"][\"outputs\"][\"test_output\"][\"value\"]}"
+          },
+          "kind": "ConfigMap",
+          "metadata": {
+            "name": "bucket-config-${parameters.workspace}",
+            "namespace": "dev"
+          }
+        }
+      ],
+      "moniker": {
+        "app": "policyapp"
+      },
+      "name": "Deploy Bucket ARN to CM",
+      "refId": "10",
+      "requisiteStageRefIds": [
+        "8"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "dev-us-west-2",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "labels": {
+              "app": "rps"
+            },
+            "name": "rps",
+            "namespace": "dev"
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "app": "rps"
+              }
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "app": "rps"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "envFrom": [
+                      {
+                        "configMapRef": {
+                          "name": "bucket-config-${parameters.workspace}"
+                        }
+                      }
+                    ],
+                    "image": "away168/rps:v1.0.0",
+                    "name": "rps",
+                    "ports": [
+                      {
+                        "containerPort": 80
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "moniker": {
+        "app": "policyapp"
+      },
+      "name": "Deploy Server",
+      "namespaceOverride": "dev",
+      "refId": "11",
+      "requisiteStageRefIds": [
+        "10"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "failOnFailedExpressions": true,
+      "name": "Evaluate Variables",
+      "refId": "13",
+      "requisiteStageRefIds": [
+        "1"
+      ],
+      "type": "evaluateVariables",
+      "variables": [
+        {
+          "key": "gitrepo",
+          "value": "${#root.artifacts.^[type==\"git/repo\"]}"
+        },
+        {
+          "key": "backend",
+          "value": "${#root.artifacts.^[type==\"github/file\"]}"
+        },
+        {
+          "key": "planfile",
+          "value": "${#root.artifacts.^[type==\"embedded/base64\"]}"
+        },
+        {
+          "key": "subdirectory",
+          "value": "workspace"
+        }
+      ]
+    },
+    {
+      "account": "spinnaker",
+      "alias": "runJob",
+      "application": "policyapp",
+      "cloudProvider": "kubernetes",
+      "completeOtherBranchesThenFail": false,
+      "consumeArtifactSource": "propertyFile",
+      "continuePipeline": false,
+      "credentials": "spinnaker",
+      "failPipeline": true,
+      "manifest": {
+        "apiVersion": "batch/v1",
+        "kind": "Job",
+        "metadata": {
+          "name": "terraformshow"
+        },
+        "spec": {
+          "backoffLimit": 1,
+          "template": {
+            "spec": {
+              "containers": [
+                {
+                  "env": [
+                    {
+                      "name": "SUBDIRECTORY",
+                      "value": "${subdirectory}"
+                    },
+                    {
+                      "name": "BACKEND_ARTIFACT_JSON",
+                      "value": "${#toJson(backend)}"
+                    },
+                    {
+                      "name": "TFREPO_ARTIFACT_JSON",
+                      "value": "${#toJson(gitrepo)}"
+                    },
+                    {
+                      "name": "PLANFILE",
+                      "value": "${planfile.reference}"
+                    },
+                    {
+                      "name": "WORKSPACE",
+                      "value": "${parameters.workspace}"
+                    }
+                  ],
+                  "image": "away168/tf:0.12.21",
+                  "imagePullPolicy": "Always",
+                  "name": "terraformshow",
+                  "volumeMounts": [
+                    {
+                      "mountPath": "/root/.aws/credentials",
+                      "name": "credentials",
+                      "readOnly": true,
+                      "subPath": "credentials"
+                    }
+                  ]
+                }
+              ],
+              "restartPolicy": "Never",
+              "volumes": [
+                {
+                  "name": "credentials",
+                  "secret": {
+                    "secretName": "aws-s3-terraform"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "name": "Terraform Show",
+      "propertyFile": "terraformshow",
+      "refId": "14",
+      "requisiteStageRefIds": [
+        "13"
+      ],
+      "source": "text",
+      "type": "runJobManifest"
+    },
+    {
+      "failOnFailedExpressions": true,
+      "name": "Evaluate Variables",
+      "refId": "15",
+      "requisiteStageRefIds": [
+        "14"
+      ],
+      "type": "evaluateVariables",
+      "variables": [
+        {
+          "key": "s3bucket_config",
+          "value": "${#stage(\"Terraform Show\").outputs.planned_values.root_module.resources.^[type==\"aws_s3_bucket\"].values}"
+        }
+      ]
+    }
+  ],
+  "triggers": [
+    {
+      "branch": "dev",
+      "enabled": true,
+      "project": "armory",
+      "secret": "4Uc9QGeV",
+      "slug": "se-terrafomer-demo",
+      "source": "github",
+      "type": "git"
+    }
+  ],
+  "updateTs": "1598312321000"
+}
