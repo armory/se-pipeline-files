@@ -31,11 +31,13 @@
       "stages": [
         {{
           local_module "dinghy/modules/simplewait.module"
-          "name" "wait - aug 18"
+          "name" "wait - local module"
           "waitTime" "13"
         }},
         {{
           module "wait.stage.module"
+          "name" "wait - remote module"
+          "waitTime" "15"
         }}
       ],
       "triggers": [],
