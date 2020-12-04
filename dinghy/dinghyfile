@@ -45,8 +45,8 @@
     },
     {{ 
       local_module "dinghy/modules/simple.pipeline" 
-      "name" "simple pipeline wait - aug 18"
-      "waitTime" "17"
+      "name" "simple pipeline wait - dec 4th"
+      "waitTime" "88"
     }}
   ]
 }
