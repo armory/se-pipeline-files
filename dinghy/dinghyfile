@@ -11,7 +11,7 @@
       "stages": [
         {
           "isNew": true,
-          "name": "Wait - updated Dec 15th",
+          "name": "Wait - updated Jan 13th",
           "refId": "1",
           "requisiteStageRefIds": [],
           "type": "wait",
