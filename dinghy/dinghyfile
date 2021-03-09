@@ -32,12 +32,12 @@
         {{
           local_module "dinghy/modules/simplewait.module"
           "name" "wait - local module"
-          "waitTime" "15"
+          "waitTime" "18"
         }},
         {{
           module "wait.stage.module"
           "name" "wait - remote module"
-          "waitTime" "227"
+          "waitTime" 829"
         }}
       ],
       "triggers": [],
