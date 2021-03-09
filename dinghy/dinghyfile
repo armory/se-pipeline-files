@@ -37,7 +37,7 @@
         {{
           module "wait.stage.module"
           "name" "wait - remote module"
-          "waitTime" 829"
+          "waitTime" "829"
         }}
       ],
       "triggers": [],
