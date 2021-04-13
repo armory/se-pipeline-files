@@ -31,8 +31,8 @@
       "stages": [
         {{
           local_module "dinghy/modules/simplewait.module"
-          "name" "wait - local module - 12:18pm"
-          "waitTime" "88"
+          "name" "wait - local module - 12:42pm"
+          "waitTime" "13"
         }},
         {{
           module "wait.stage.module"
