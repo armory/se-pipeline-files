@@ -7,7 +7,7 @@
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
-      "spelEvaluator": "v4",
+      "spelEvaluator": "v4"
       "stages": [
         {
           "isNew": true,
