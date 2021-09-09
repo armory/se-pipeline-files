@@ -3,7 +3,7 @@
   "pipelines": [
     {
       "application": "dinghy",
-      "name": "step 1b. simple pipeline (gitops)",
+      "name": "step 1a. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
