@@ -39,7 +39,6 @@
           "name" "wait - remote module"
           "waitTime" "20"
           "refId" "2"
-          "requisiteStageRefIds": "1"
         }}
       ],
       "triggers": [],
