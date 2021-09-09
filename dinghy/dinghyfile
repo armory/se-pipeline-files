@@ -47,6 +47,7 @@
       local_module "dinghy/modules/simple.pipeline" 
       "name" "simple pipeline wait - mar 9th 12:19pm"
       "waitTime" "10"
+      "refId" "2"
     }}
   ]
 }
