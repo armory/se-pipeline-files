@@ -37,7 +37,7 @@
         {{
           local_module "dinghy/modules/wait.stage.module"
           "name" "wait - remote module"
-          "waitTime" "20"
+          "waitTime" "22"
           "refId" "2"
           "requisiteStageRefIds" "1"
         }}
