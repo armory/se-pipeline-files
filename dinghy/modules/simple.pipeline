@@ -1,6 +1,6 @@
     {
       "application": "dinghy",
-      "name": "step 3. simple pipeline module (gitops)",
+      "name": "step 1. simple pipeline module (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "away168",
       "limitConcurrent": true,
