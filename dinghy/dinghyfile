@@ -30,12 +30,12 @@
       "spelEvaluator": "v4",
       "stages": [
         {{
-          local_module "dinghy/modules/simplewait.module"
+          module "dinghy/modules/simplewait.module"
           "name" "wait - local module - 12:42pm"
           "waitTime" "13"
         }},
         {{
-          local_module "dinghy/modules/wait.stage.module"
+          module "dinghy/modules/wait.stage.module"
           "name" "wait - remote module"
           "waitTime" "22"
           "refId" "2"
@@ -45,7 +45,7 @@
       "updateTs": "1597712087000"
     },
     {{ 
-      local_module "dinghy/modules/simple.pipeline" 
+      module "dinghy/modules/simple.pipeline" 
       "name" "simple pipeline wait - mar 9th 12:19pm"
       "waitTime" "10"
     }}
