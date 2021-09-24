@@ -1,17 +1,17 @@
-t{
+{
   "application": "dinghy",
   "pipelines": [
     {
       "application": "dinghy",
       "name": "step 1. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
-      "lastModifiedBy": "peteblin",
+      "lastModifiedBy": "away168",
       "limitConcurrent": true,
       "spelEvaluator": "v4",
       "stages": [
         {
           "isNew": true,
-          "name": "Wait - updated September 24",
+          "name": "Wait - updated Apr 13th",
           "refId": "1",
           "requisiteStageRefIds": [],
           "type": "wait",
@@ -37,7 +37,7 @@ t{
         {{
           local_module "dinghy/modules/wait.stage.module"
           "name" "wait - remote module"
-          "waitTime" "44"
+          "waitTime" "22"
           "refId" "2"
         }}
       ],
