@@ -11,7 +11,7 @@
       "stages": [
         {
           "isNew": true,
-          "name": "Wait - updated Apr 14th",
+          "name": "Wait - updated September 24th",
           "refId": "1",
           "requisiteStageRefIds": [],
           "type": "wait",
@@ -23,24 +23,24 @@
     },
     {
       "application": "dinghy",
-      "name": "step 2. simple modules (gitops)",
+      "name": "step 4. simple modules (gitops)",
        "keepWaitingPipelines": false,
-  "lastModifiedBy": "anonymous",
-  "limitConcurrent": true,
-  "locked": {
-    "allowUnlockUi": true,
-    "ui": true
-  },
-  "parallel": false,
-  "spelEvaluator": "v4",
-  "stages": [
-    {
-      "isNew": true,
-      "name": "wait - local module - 12:42pm",
-      "refId": "1",
-      "requisiteStageRefIds": [],
-      "type": "wait",
-      "waitTime": "13"
+       "lastModifiedBy": "anonymous",
+       "limitConcurrent": true,
+       "locked": {
+         "allowUnlockUi": true,
+         "ui": true
+    },
+       "parallel": false,
+       "spelEvaluator": "v4",
+       "stages": [
+       {
+         "isNew": true,
+         "name": "wait - local module - 4:29pm",
+         "refId": "1",
+         "requisiteStageRefIds": [],
+         "type": "wait",
+         "waitTime": "13"
     },
     {
       "name": "wait - remote module",
