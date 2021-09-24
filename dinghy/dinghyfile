@@ -5,7 +5,7 @@ t{
       "application": "dinghy",
       "name": "step 1. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
-      "lastModifiedBy": "peter",
+      "lastModifiedBy": "peteblin",
       "limitConcurrent": true,
       "spelEvaluator": "v4",
       "stages": [
