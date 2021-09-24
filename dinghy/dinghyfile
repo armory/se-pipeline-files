@@ -1,11 +1,11 @@
-{
+t{
   "application": "dinghy",
   "pipelines": [
     {
       "application": "dinghy",
       "name": "step 1. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
-      "lastModifiedBy": "away168",
+      "lastModifiedBy": "peter",
       "limitConcurrent": true,
       "spelEvaluator": "v4",
       "stages": [
