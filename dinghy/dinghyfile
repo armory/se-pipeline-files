@@ -11,11 +11,11 @@
       "stages": [
         {
           "isNew": true,
-          "name": "Wait - updated Apr 14th",
+          "name": "Wait - updated Apr 13th",
           "refId": "1",
           "requisiteStageRefIds": [],
           "type": "wait",
-          "waitTime": 44
+          "waitTime": 77
         }
       ],
       "triggers": [],
@@ -30,25 +30,23 @@
       "spelEvaluator": "v4",
       "stages": [
         {{
-          module "./modules/simplewait.module"
+          local_module "dinghy/modules/simplewait.module"
           "name" "wait - local module - 12:42pm"
           "waitTime" "13"
         }},
         {{
-          module "dinghy/modules/wait.stage.module"
+          module "wait.stage.module"
           "name" "wait - remote module"
-          "waitTime" "22"
-          "refId" "2"
+          "waitTime" "29"
         }}
       ],
       "triggers": [],
       "updateTs": "1597712087000"
     },
     {{ 
-      module "./modules/simple.pipeline" 
+      local_module "dinghy/modules/simple.pipeline" 
       "name" "simple pipeline wait - mar 9th 12:19pm"
       "waitTime" "10"
     }}
   ]
 }
-
