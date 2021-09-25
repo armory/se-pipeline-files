@@ -1,0 +1,18 @@
+     "parallel": false,
+       "spelEvaluator": "v4",
+       "stages": [
+     {
+         "isNew": true,
+         "name": "wait - local module - 4:29pm",
+         "refId": "1",
+         "requisiteStageRefIds": [],
+         "type": "wait",
+         "waitTime": "13"
+    },
+    {
+      "name": "wait - remote module",
+      "refId": "2",
+      "requisiteStageRefIds": [],
+      "type": "wait",
+      "waitTime": 44
+    }
