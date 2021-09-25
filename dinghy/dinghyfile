@@ -23,7 +23,7 @@
     },
     {
     
-       {module "modules/step2stage"}
+       {module "dinghky/modules/step2stage"}
     
      }
   ]
