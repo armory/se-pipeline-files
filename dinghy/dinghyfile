@@ -21,10 +21,5 @@
       "triggers": [],
       "updateTs": "1597712087000"
     },
-    {
-    
-       {module "dinghky/modules/step2stage"}
-    
-     }
-  ]
+   ]
 }
