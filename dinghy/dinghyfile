@@ -11,11 +11,11 @@
       "stages": [
         {
           "isNew": true,
-          "name": "Wait - updated September 25th",
+          "name": "Wait - updated September 29th",
           "refId": "1",
           "requisiteStageRefIds": [],
           "type": "wait",
-          "waitTime": 77
+          "waitTime": 20
         }
       ],
       "triggers": [],
