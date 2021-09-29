@@ -5,7 +5,7 @@
       "application": "dinghy-2",
       "name": "step 1. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
-      "lastModifiedBy": "away168",
+      "lastModifiedBy": "tmcgonagle",
       "limitConcurrent": true,
       "spelEvaluator": "v4",
       "stages": [
@@ -23,9 +23,9 @@
     },
     {
       "application": "dinghy-2",
-      "name": "step 4. simple modules (gitops)",
+      "name": "step 2. simple modules (gitops)",
        "keepWaitingPipelines": false,
-       "lastModifiedBy": "anonymous",
+       "lastModifiedBy": "tmcgonagle",
        "limitConcurrent": true,
        "locked": {
          "allowUnlockUi": true,
