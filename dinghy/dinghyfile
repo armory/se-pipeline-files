@@ -5,7 +5,7 @@
       "application": "dinghy-2",
       "name": "step 1. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
-      "lastModifiedBy": "tmcgonagle",
+      "lastModifiedBy": "mcgonagle",
       "limitConcurrent": true,
       "spelEvaluator": "v4",
       "stages": [
@@ -25,7 +25,7 @@
       "application": "dinghy-2",
       "name": "step 2. simple modules (gitops)",
        "keepWaitingPipelines": false,
-       "lastModifiedBy": "tmcgonagle",
+       "lastModifiedBy": "mcgonagle",
        "limitConcurrent": true,
        "locked": {
          "allowUnlockUi": true,
@@ -36,7 +36,7 @@
        "stages": [
        {
          "isNew": true,
-         "name": "wait - local module - 4:29pm",
+         "name": "wait - local module - 12:54pm",
          "refId": "1",
          "requisiteStageRefIds": [],
          "type": "wait",
