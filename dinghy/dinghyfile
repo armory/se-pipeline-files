@@ -1,8 +1,8 @@
 {
-  "application": "dinghy-2",
+  "application": "dinghy",
   "pipelines": [
     {
-      "application": "dinghy-2",
+      "application": "dinghy",
       "name": "step 1. simple pipeline (gitops)",
       "keepWaitingPipelines": false,
       "lastModifiedBy": "mcgonagle",
@@ -22,7 +22,7 @@
       "updateTs": "1597712087000"
     },
     {
-      "application": "dinghy-2",
+      "application": "dinghy",
       "name": "step 2. simple modules (gitops)",
        "keepWaitingPipelines": false,
        "lastModifiedBy": "mcgonagle",
